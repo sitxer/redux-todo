@@ -4,6 +4,15 @@ import { addTodo, toggleTodo, deleteTodo, filterChange } from "../../actions/";
 
 import "./style.scss";
 
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Input from "@material-ui/core/Input";
+import Add from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+
+
 class App extends Component {
   constructor(state) {
     super(state);
@@ -44,27 +53,41 @@ class App extends Component {
 
   render() {
     return (
-      <div className={"todo__wrapper"}>
-        <div className={"todo__controls"}>
-          <input
-            type="text"
-            className={"todo__input"}
-            ref={input => (this.input = input)}
-            placeholder={"Тут текст для тудушечки!"}
-          />
-          <button onClick={this.addTodo} className={"todo__add-button"}>
-            Добавить
-          </button>
-        </div>
-
-        <select value={this.props.filter} onChange={this.handleFilter}>
-          <option selected value="all">
-            все
-          </option>
-          <option value="active">активные</option>
-          <option value="completed">выполненные</option>
-        </select>
-        <div className={"todo__list"}>{this.renderList()}</div>
+      <div className={"todo"}>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <Paper className={"todo__controls"}>
+              <div className={"todo__input-field"}>
+                <Input
+                  fullWidth
+                  inputRef={input => (this.input = input)}
+                  label="Dense"
+                  placeholder={"Введите текст"}
+                />
+                <Fab
+                  size="small"
+                  color="secondary"
+                  aria-label="Add"
+                  onClick={this.addTodo}className={"todo__input-add"}>
+                  <Add />
+                </Fab>
+              </div>
+              <Select
+                value={this.props.filter}
+                onChange={this.handleFilter}
+                className={"todo__select"}>
+                <MenuItem selected value="all">
+                  все
+                </MenuItem>
+                <MenuItem value="active">активные</MenuItem>
+                <MenuItem value="completed">выполненные</MenuItem>
+              </Select>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={"todo__wrapper"}>{this.renderList()}</Paper>
+          </Grid>
+        </Grid>
       </div>
     );
   }
