@@ -7,7 +7,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import "./index.scss"
 
 import rootReducer from "./reducers";
-import App from "./containers/App";;
+import App from "./containers/App";
 
 const store = createStore(rootReducer);
 
