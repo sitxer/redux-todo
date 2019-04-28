@@ -20,8 +20,8 @@ const todos = (state = [], action) => {
           : todo
       );
     case DELETE_TODO:
-      return state.filter((todo, index) => {
-        return index !== action.payload;
+      return state.filter(todo => {
+        return todo.id !== action.payload;
       });
     default:
       return state;
