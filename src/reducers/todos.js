@@ -1,6 +1,5 @@
 import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "../actions/todos";
-
-let nextTodoId = 0;
+import moment from "moment";
 
 const todos = (state = [], action) => {
   switch (action.type) {
@@ -8,7 +7,7 @@ const todos = (state = [], action) => {
       return [
         ...state,
         {
-          id: nextTodoId++,
+          id: moment().format("YYYYMMDDHHmmss"),
           text: action.payload,
           isCompleted: false,
         },

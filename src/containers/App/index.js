@@ -7,11 +7,12 @@ import Paper from "@material-ui/core/Paper";
 import { addTodo, toggleTodo, deleteTodo } from "../../actions/todos";
 import { filterChange } from "../../actions/filters";
 import ListItems from "../../components/ListItems";
+import ListLogs from "../../components/ListLogs";
 import ControlPanel from "../../components/ControlPanel";
 
 const styles = theme => ({
   root: {
-    width: "600px",
+    width: "800px",
     margin: "0 auto",
     padding: "30px 0",
   },
@@ -56,6 +57,9 @@ class App extends Component {
             />
           </Paper>
         </Grid>
+        <Grid item xs={6}>
+          <ListLogs logs={this.props.logs} />
+        </Grid>
       </Grid>
     );
   }
@@ -64,16 +68,18 @@ class App extends Component {
 function mapStateToProps(state) {
   switch (state.filters) {
     case "all":
-      return { items: state.todos, filter: state.filters };
+      return { items: state.todos, filter: state.filters, logs: state.logs };
     case "active":
       return {
         items: state.todos.filter(i => !i.isCompleted),
         filter: state.filters,
+        logs: state.logs,
       };
     case "completed":
       return {
         items: state.todos.filter(i => i.isCompleted),
         filter: state.filters,
+        logs: state.logs,
       };
     default:
       return state;
