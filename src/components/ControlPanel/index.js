@@ -22,8 +22,8 @@ const styles = () => ({
 });
 
 class ControlPanel extends Component {
-  constructor(state) {
-    super(state);
+  constructor(props) {
+    super(props);
 
     this.addTodo = this.addTodo.bind(this);
   }

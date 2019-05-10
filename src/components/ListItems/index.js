@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Checkbox from "@material-ui/core/Checkbox";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/icons/Delete";
+
+import Item from "./parts/Item"
 
 class ListItems extends Component {
   constructor(props) {
@@ -18,21 +14,13 @@ class ListItems extends Component {
   renderItems() {
     return this.props.items.map((i, index) => {
       return (
-        <ListItem
+        <Item
           key={index}
-          role={undefined}
-          dense
-          button
-          onClick={this.props.onToggle.bind(this, i.id)}>
-          <Checkbox checked={i.isCompleted} tabIndex={-1} disableRipple />
-          <ListItemText primary={i.text} />
-          <ListItemSecondaryAction
-            onClick={this.props.onDelete.bind(this, i.id)}>
-            <IconButton>
-              <DeleteIcon />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
+          item={i}
+          onDelete={this.props.onDelete}
+          onToggle={this.props.onToggle}
+        >
+        </Item>
       );
     });
   }
