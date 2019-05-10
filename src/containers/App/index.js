@@ -26,8 +26,8 @@ const styles = theme => ({
 });
 
 class App extends Component {
-  constructor(state) {
-    super(state);
+  constructor(props) {
+    super(props);
 
     this.handleFilter = this.handleFilter.bind(this);
   }
