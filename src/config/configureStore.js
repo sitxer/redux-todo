@@ -12,7 +12,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const setDateLog = store => next => action => {
+const setDateLog = () => next => action => {
   action.meta = {
     ...action.meta,
     date: moment().format("YYYY-MM-DD HH:mm:ss"),
@@ -21,7 +21,7 @@ const setDateLog = store => next => action => {
   return result;
 };
 
-const timeoutScheduler = store => next => action => {
+const timeoutScheduler = () => next => action => {
   if (!action.meta || !action.meta.delay) {
     return next(action);
   }
