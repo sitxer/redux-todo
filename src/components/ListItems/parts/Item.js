@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
+
 
 import ListItem from "@material-ui/core/ListItem";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -7,6 +9,13 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CloseIcon from "@material-ui/icons/Close";
+
+const styles = () => ({
+  cancelButton: {
+    transition: "all, 10s",
+    backgroundColor: "#f50057",
+  },
+});
 
 class Item extends Component {
   constructor(props) {
@@ -38,6 +47,8 @@ class Item extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
       <ListItem
         role={undefined}
@@ -59,7 +70,7 @@ class Item extends Component {
           </ListItemSecondaryAction>
         ) : (
           <ListItemSecondaryAction onClick={this.onCancel}>
-            <IconButton>
+            <IconButton className={classes.cancelButton}>
               <CloseIcon />
             </IconButton>
           </ListItemSecondaryAction>
@@ -69,4 +80,4 @@ class Item extends Component {
   }
 }
 
-export default Item;
+export default withStyles(styles)(Item);
